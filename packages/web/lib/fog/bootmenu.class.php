@@ -344,7 +344,7 @@ class BootMenu extends FOGBase
         if (($_REQUEST['arch'] ?? '') == 'i386') {
             $bzImage = $bzImage32;
             $imagefile = $init_32;
-        } elseif (($_REQUEST['arch'] ?? '') == 'arm') {
+        } elseif (false !== stripos(($_REQUEST['arch'] ?? ''), 'arm')) {
             $bzImage = $bzImageArm;
             $imagefile = $init_arm;
         }

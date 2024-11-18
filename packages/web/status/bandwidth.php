@@ -23,6 +23,13 @@
  * @link     https://fogproject.org
  */
 header('Content-Type: application/json');
+function read_return_int($filename)
+{
+    if (!file_exists($filename)) {
+        return 0;
+    }
+    return (int)trim(file_get_contents($filename));
+}
 /**
  * Lambda for returning the bytes from the file requested.
  *
@@ -41,8 +48,8 @@ $getBytes = function ($dev) {
     }
     $txpath = "/sys/class/net/$dev/statistics/tx_bytes";
     $rxpath = "/sys/class/net/$dev/statistics/rx_bytes";
-    $tx = (int)trim(file_get_contents($txpath));
-    $rx = (int)trim(file_get_contents($rxpath));
+    $tx = read_return_int($txpath);
+    $rx = read_return_int($rxpath);
     return [$rx,$tx];
 };
 // Make sure a device is set
@@ -67,6 +74,9 @@ $interfaces = [];
 // Loop the captured data and set up interfaces
 foreach ($dir_interfaces as $iface) {
     $operstateFile = "/sys/class/net/$iface/operstate";
+    if (!file_exists($operstateFile)) {
+        continue;
+    }
     $content = file_get_contents($operstateFile);
     $content = trim($content);
     if ($content !== 'up') {

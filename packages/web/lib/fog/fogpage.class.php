@@ -740,7 +740,17 @@ abstract class FOGPage extends FOGBase
             if (self::$ajax) {
                 header('Content-Type: application/json');
                 Route::listem($this->childClass);
-                echo Route::getData();
+                $data = Route::getData();
+                self::$HookManager->processEvent(
+                    'AJAX_DATA_DISPLAY_CHANGE',
+                    [
+                        'data' => &$data,
+                        'childClass' => &$this->childClass,
+                        'main' => &$this,
+                        'delNeeded' => &$delNeeded
+                    ]
+                );
+                echo $data;
                 exit;
             }
             if ($node == 'ipxe') {

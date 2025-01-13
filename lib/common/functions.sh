@@ -789,11 +789,10 @@ installPackages() {
     packages="$packages unzip"
     packages="$packages attr"
     packages="${packages} ${webserver}"
-    grep -qP "Subsystem\s+sftp\s+\/usr\/(?:lib|libexec)\/openssh\/sftp-server" /etc/ssh/sshd_config >>$error_log 2>&1
+    str=$(grep -P "Subsystem\s+sftp\s+\/usr\/(?:lib|libexec)\/openssh\/sftp-server" /etc/ssh/sshd_config)
     if [[ $? -eq 0 ]]; then
         dots "Adjusting sftp for ssh"
-        sed -i -e "s#Subsystem\s\+sftp\s\+/usr/lib/openssh/sftp-server#Subsystem\tsftp\tinternal-sftp#g" /etc/ssh/sshd_config >>$error_log 2>&1
-        sed -i -e "s#Subsystem\s\+sftp\s\+/usr/libexec/openssh/sftp-server#Subsystem\tsftp\tinternal-sftp#g" /etc/ssh/sshd_config >>$error_log 2>&1
+        sed -i -e "s#$str#Subsystem\tsftp\tinternal-sftp#g" /etc/ssh/sshd_config >>$error_log 2>&1
         systemctl enable sshd >/dev/null 2>&1
         systemctl restart sshd >/dev/null 2>&1
         echo "Done"

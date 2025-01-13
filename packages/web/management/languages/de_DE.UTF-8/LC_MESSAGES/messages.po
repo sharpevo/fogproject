@@ -638,6 +638,9 @@ msgstr ""
 msgid "All rights reserved."
 msgstr ""
 
+msgid "Allow API"
+msgstr ""
+
 msgid "Allows editing/creating of Task States fog currently has."
 msgstr ""
 "Ermöglicht das Bearbeiten / Erstellen von Taskstatus, die FOG zurzeit hat."

@@ -126,6 +126,7 @@ class BootMenu extends FOGBase
     public static function generateIpxeItems($object)
     {
         $ignore_keys = [
+            'description',
             'id',
             'hostID',
             'DT_RowId',
@@ -1965,6 +1966,7 @@ class BootMenu extends FOGBase
             'goto MENU',
             'autoboot',
         ];
+        self::var_dump_log($Send);
         $this->_parseMe($Send);
     }
 }

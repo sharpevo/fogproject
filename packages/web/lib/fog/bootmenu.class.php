@@ -1966,7 +1966,6 @@ class BootMenu extends FOGBase
             'goto MENU',
             'autoboot',
         ];
-        self::var_dump_log($Send);
         $this->_parseMe($Send);
     }
 }

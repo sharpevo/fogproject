@@ -509,7 +509,7 @@ class FOGURLRequests extends FOGBase
      * @param string $callback   A callback to use if needed
      * @param string $file       A filename to use to download a file
      * @param mixed  $timeout    allow updating timeout values
-     * @param array  $header     Send specific headers.
+     * @param array  $headers     Send specific headers.
      *
      * @return array
      */
@@ -522,7 +522,7 @@ class FOGURLRequests extends FOGBase
         $callback = false,
         $file = false,
         $timeout = false,
-        $header = []
+        $headers = []
     ) {
         $this->__destruct();
         if (false !== $timeout) {
@@ -535,7 +535,7 @@ class FOGURLRequests extends FOGBase
         if ($auth) {
             $this->options[CURLOPT_USERPWD] = $auth;
         }
-        $this->options[CURLOPT_HTTPHEADER] = $header;
+        $this->options[CURLOPT_HTTPHEADER] = $headers;
         if ($sendAsJSON) {
             $data2 = json_encode($data);
             $datalen = strlen($data2);

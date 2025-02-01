@@ -509,7 +509,7 @@ class FOGURLRequests extends FOGBase
      * @param string $callback   A callback to use if needed
      * @param string $file       A filename to use to download a file
      * @param mixed  $timeout    allow updating timeout values
-     * @param array  $headers     Send specific headers.
+     * @param array  $headers    Send specific headers.
      *
      * @return array
      */

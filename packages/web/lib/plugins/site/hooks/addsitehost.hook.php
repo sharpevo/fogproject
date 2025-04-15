@@ -435,7 +435,7 @@ class AddSiteHost extends Hook
      */
     public function hostDestroy($arguments)
     {
-        if (!in_array($this-node, (array)self::$pluginsinstalled)) {
+        if (!in_array($this->node, (array)self::$pluginsinstalled)) {
             return;
         }
         self::getClass('SiteHostAssociationManager')->destroy(

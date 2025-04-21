@@ -677,6 +677,9 @@ installPackages() {
                     packages="${packages// mysql / mariadb }" >>$error_log 2>&1
                     packages="${packages// mysql-server / mariadb-server }" >>$error_log 2>&1
                     packages="${packages// dhcp / dhcp-server }" >>$error_log 2>&1
+                    if [[ $OSVersion -ge 40 ]]; then
+                        packages="${packages// wget / wget2 }" >>$error_log 2>&1
+                    fi
                     ;;
                 *)
                     x="epel-release"
@@ -884,6 +887,13 @@ confirmPackageInstallation() {
         eval $packageQuery >>$error_log 2>&1
         errorStat $?
     done
+    if [[ $packages == *"wget2"* ]]; then
+        dots "Checking wget symbolic link to wget2"
+        if [[ ! -L /usr/bin/wget ]]; then
+            ln -s /usr/bin/wget2 /usr/bin/wget
+        fi
+        echo "OK"
+    fi
 }
 checkSELinux() {
     command -v sestatus >>$error_log 2>&1

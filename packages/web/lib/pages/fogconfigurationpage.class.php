@@ -216,7 +216,7 @@ class FOGConfigurationPage extends FOGPage
 
         $html = '<div class="col-xs-12"><a href="#" class="btn btn-info btn-block trigger_expand"><h4 class="title">Expand All</h4></a></div>';
         foreach ($kernelOrInitData as $release) {
-            $found_match = preg_match('/(.*)([4-9]\.[0-9][0-9]*\.[0-9][0-9]*)([^0-9]*)(20[0-9][0-9]\.[0-9][0-9]\.[0-9][0-9]*)(.*)/', $release->body, $release_version, PREG_OFFSET_CAPTURE);
+            $found_match = preg_match('/(.*)([4-9]\.[0-9]+(?:\.[0-9]+)?)([^0-9]*)(20[0-9]{2}\.[0-9]{2}(?:\.[0-9]+)?)(.*)/', $release->body, $release_version, PREG_OFFSET_CAPTURE);
             foreach ($release->assets as $asset) {
                 if ($type == 'kernel' && !in_array($asset->name, ['arm_Image', 'bzImage', 'bzImage32'])) {
                     continue;

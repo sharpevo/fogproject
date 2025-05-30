@@ -2189,7 +2189,7 @@ EOF
                             openssl dhparam -dsaparam -out $sslpath/dhparam.pem 4096 >>$workingdir/error_logs/fog_error_${version}.log 2>&1
                         fi
                         echo "server {" >> "$etcconf"
-                        echo "    listen 443 ssl;" >> "$etcconf"
+                        echo "    listen $ipaddress:443 ssl;" >> "$etcconf"
                         echo "    server_name $ipaddress $hostname;" >> "$etcconf"
                         echo "    root ${docroot};" >> "$etcconf"
                         echo "    index index.html index.htm index.php;" >> "$etcconf"
@@ -2236,7 +2236,7 @@ EOF
                             cat $webdirdest/management/other/{ca.cert.pem,ssl/srvpublic.crt} >> $webdirdest/management/other/ssl/srvchained.crt
                         fi
                         echo "server {" > "$etcconf"
-                        echo "    listen 443 ssl;" >> "$etcconf"
+                        echo "    listen $ipaddress:443 ssl;" >> "$etcconf"
                         echo "    server_name $ipaddress $hostname;" >> "$etcconf"
                         echo "    root ${docroot};" >> "$etcconf"
                         echo "    index index.html index.htm index.php;" >> "$etcconf"

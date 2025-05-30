@@ -1300,6 +1300,9 @@ class Route extends FOGBase
                         $w = " OR `hostMAC`.`hmMAC` LIKE :item";
                         $g = "GROUP BY `hosts`.`hostName`";
                         break;
+                    case 'setting':
+                        $w = " OR `settingValue` LIKE :item";
+                        break;
                     default:
                         $j = '';
                         $w = '';

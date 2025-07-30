@@ -116,9 +116,11 @@ class AddLocationAPI extends Hook
         if (!in_array($this->node, (array)self::$pluginsinstalled)) {
             return;
         }
+
+        $requestMethod = $_SERVER['REQUEST_METHOD'] ?? null;
         
         // is create or edit call
-        if (in_array($_SERVER['REQUEST_METHOD'], ['POST', 'PUT']))
+        if (in_array($requestMethod, ['POST', 'PUT']))
         {
             $vars = json_decode(
                 file_get_contents('php://input')

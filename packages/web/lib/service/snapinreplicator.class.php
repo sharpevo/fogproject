@@ -194,13 +194,13 @@ class SnapinReplicator extends FOGService
                 if ($SnapinAssocCount < 1
                     || $SnapinCount < 1
                 ) {
-                    $this->outall(
+                    self::outall(
                         sprintf(
                             ' | %s.',
                             _('There is nothing to replicate')
                         )
                     );
-                    $this->outall(
+                    self::outall(
                         sprintf(
                             ' | %s %s.',
                             _('Please physically associate'),

@@ -195,13 +195,13 @@ class ImageReplicator extends FOGService
                 if ($ImageAssocCount <= 0
                     || $ImageCount <= 0
                 ) {
-                    $this->outall(
+                    self::outall(
                         sprintf(
                             ' | %s.',
                             _('There is nothing to replicate')
                         )
                     );
-                    $this->outall(
+                    self::outall(
                         sprintf(
                             ' | %s %s.',
                             _('Please physically associate'),
